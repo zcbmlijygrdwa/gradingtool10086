@@ -13,7 +13,7 @@ gongchuSet = readGongchu();
 
 ChuchaiSet = readChuchai();
 
-excludeDates = [1,2,8,9,15,16,22,23,29,30];
+excludeDates = [3,4,10,11,17,18,24,25];
 
 str_shengbu = 'shengbu';
 peopleSet_shengbu = {};
@@ -46,7 +46,7 @@ for peopleIdx = 1:length(peopleSet_shengbu)
     end
     
     disp(['checking ' tempPeople.name '...']);
-    for day = 1:7
+    for day = 1:30
         
         %get rid of holidays/weekends
         if(ismember(day,excludeDates))
@@ -55,7 +55,7 @@ for peopleIdx = 1:length(peopleSet_shengbu)
             
         end
         
-        tempDate = dateStringBuilder(2018,9,day,'-');
+        tempDate = dateStringBuilder(2018,11,day,'-');
         isRecordFound = false;
         for timePunchIdx = 1:length(timePunchSet)
             tempTimePunch = timePunchSet{timePunchIdx};

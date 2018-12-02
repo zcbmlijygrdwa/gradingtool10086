@@ -3,7 +3,7 @@ function xiujiaSet = readXiujia()
 xiujiaSet = {};
 xiujiaSet_Count = 1;
 
-fid1 = fopen('data/10/10xiujia.csv','r', 'n','UTF-8'); %# open csv file for reading
+fid1 = fopen('data/11/11xiujia.csv','r', 'n','UTF-8'); %# open csv file for reading
 
 while ~feof(fid1)
     line = fgets(fid1); %# read line by line
