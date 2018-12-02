@@ -1,0 +1,5 @@
+1. remove right tail colums in xlsx
+2. save xlsx as csv
+3. open csv in notepad++, and replace shengbu, complete, pending, cancelled, remove buttom empty rows, save as UTF-8
+4. matlab processing, save as csv
+5. open output csv in notepad, save as UTF-8 csv
