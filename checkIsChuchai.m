@@ -1,11 +1,11 @@
-function output = checkIsChuchai(id,dateStr,ChuchaiSet)
+function output = checkIsChuchai(id,dateObj,ChuchaiSet)
 %check if this person is chuchai on the date
-
+currentDays = dateToDays(dateObj);
 for i = 1:length(ChuchaiSet)
     tempChuchai = ChuchaiSet{i};
-    startDays = dateToDays(dateStringParser(tempChuchai.startDate));
-    endDays = dateToDays(dateStringParser(tempChuchai.endDate));
-    currentDays = dateToDays(dateStringParser(dateStr));
+    startDays = dateToDays(tempChuchai.startDate);
+    endDays = dateToDays(tempChuchai.endDate);
+    
     
     if(tempChuchai.id==id && startDays<=currentDays && currentDays<=endDays)
         output = true;

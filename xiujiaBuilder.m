@@ -3,11 +3,11 @@ function xiujia = xiujiaBuilder(id,startDateTimeStr,endDateTimeStr)
 xiujia.id = str2num(id);
 
 lineSplit = strsplit(startDateTimeStr,' ');
-xiujia.startDate = lineSplit{1};
+xiujia.startDate = dateStringParser(lineSplit{1});
 xiujia.startTime = timeBuilder(str2num(lineSplit{2}),0,0);
 
 lineSplit = strsplit(endDateTimeStr,' ');
-xiujia.endDate = lineSplit{1};
+xiujia.endDate = dateStringParser(lineSplit{1});
 xiujia.endTime = timeBuilder(str2num(lineSplit{2}),0,0);
 
 

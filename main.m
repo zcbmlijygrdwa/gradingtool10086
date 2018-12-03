@@ -5,13 +5,15 @@ addpath('data')
 
 peopleSet = readNames();
 
-timePunchSet = readDaka();
+
 
 xiujiaSet = readXiujia();
 
 gongchuSet = readGongchu();
 
 ChuchaiSet = readChuchai();
+
+timePunchSet = readDaka(gongchuSet,xiujiaSet,ChuchaiSet);
 
 excludeDates = [3,4,10,11,17,18,24,25];
 
@@ -55,11 +57,12 @@ for peopleIdx = 1:length(peopleSet_shengbu)
             
         end
         
-        tempDate = dateStringBuilder(2018,11,day,'-');
+        tempDateStr = dateStringBuilder(2018,11,day,'-');
+        tempDate = dateStringParser(tempDateStr);
         isRecordFound = false;
         for timePunchIdx = 1:length(timePunchSet)
             tempTimePunch = timePunchSet{timePunchIdx};
-            if(strcmp(tempTimePunch.date,tempDate)  &&  tempTimePunch.id==tempPeople.id)
+            if(strcmp(tempTimePunch.dateStr,tempDateStr)  &&  tempTimePunch.id==tempPeople.id)
                 isRecordFound = true;
                 
                 for statusIdx = 1:length(tempTimePunch.attendence)
@@ -67,54 +70,28 @@ for peopleIdx = 1:length(peopleSet_shengbu)
                     if(strcmp(tempTimePunch.attendence{statusIdx},'full_attendence'))
                         status.full_attendence = status.full_attendence + 1;
                     elseif(strcmp(tempTimePunch.attendence{statusIdx},'late1'))
+                        
                         status.late1 = status.late1 + 1;
+                        
                     elseif(strcmp(tempTimePunch.attendence{statusIdx},'late2'))
                         status.late2 = status.late2 + 1;
                     elseif(strcmp(tempTimePunch.attendence{statusIdx},'early_leave'))
-                        status.early_leave = status.early_leave + 1;
+                       status.early_leave = status.early_leave + 1;
+                        
                     elseif(strcmp(tempTimePunch.attendence{statusIdx},'no_punch_in'))
-                        
-                        %check if gongchu in the morning, if yes, allow
-                        %no_punch_in
-                        tempgongchu = getGongchu(tempPeople.id,tempDate,gongchuSet);
-                        if(length(tempgongchu)~=0&&timeToSeconds(tempgongchu.startTime)<timeToSeconds(timeBuilder(12,0,0)))
-                            disp('found gongchu in the moring, waive no_punch_in');
-                            if(length(tempTimePunch.attendence)==1)
-                                status.full_attendence = status.full_attendence + 1;
-                            end
-                        else
-                            status.no_punch_in = status.no_punch_in + 1;
-                        end
-                        
-                        
-                        
+                       status.no_punch_in = status.no_punch_in + 1;
                     elseif(strcmp(tempTimePunch.attendence{statusIdx},'no_punch_out'))
-                        
-                        %check if gongchu in the morning, if yes, allow
-                        %no_punch_out
-                        tempgongchu = getGongchu(tempPeople.id,tempDate,gongchuSet);
-                        if(length(tempgongchu)~=0&&timeToSeconds(tempgongchu.startTime)>timeToSeconds(timeBuilder(12,0,0)))
-                            disp('found gongchu in the afternoon, waive no_punch_out');
-                            if(length(tempTimePunch.attendence)==1)
-                                status.full_attendence = status.full_attendence + 1;
-                            end
-                        else
-                            status.no_punch_out = status.no_punch_out + 1;
-                        end
-                        
-                        
+                        status.no_punch_out = status.no_punch_out + 1;
                     elseif(strcmp(tempTimePunch.attendence{statusIdx},'no_punch_all_day'))
                         status.no_punch_all_day = status.no_punch_all_day + 1;
                     end
-                    
                 end
-                
                 break;
             end
         end
         
         if(~isRecordFound)
-            disp(['[' num2str(peopleIdx*100.0/length_peopleSet_shengbu) '%] ' tempPeople.name ' - no record on ' tempDate ', checking chuchai ...'])
+            disp(['[' num2str(peopleIdx*100.0/length_peopleSet_shengbu) '%] ' tempPeople.name ' - no record on ' tempDateStr ', checking chuchai ...'])
             checkIsChuchaiRes = checkIsChuchai(tempPeople.id,tempDate,ChuchaiSet);
             if(checkIsChuchaiRes)
                 status.full_attendence = status.full_attendence + 1;
@@ -191,8 +168,7 @@ for peopleIdx = 1:length(peopleSet_shengbu)
                         
                     elseif(isAfternoonGoold)
                         status.no_punch_in = status.no_punch_in + 1;
-                    else
-                        
+                    else       
                         status.no_punch_all_day = status.no_punch_all_day + 1;
                     end
                 end
@@ -206,7 +182,7 @@ end
 
 
 %write into txt
-fileID = fopen(['kaoqing.csv'],'wt','n','UTF-8');
+fileID = fopen(['kaoqing11_new.csv'],'wt','n','UTF-8');
 for reportIdx = 1:length(peopleReportSet)
     peopleReport = peopleReportSet{reportIdx};
     reportStr = [peopleReport.people.name ',' num2str(peopleReport.people.id)];

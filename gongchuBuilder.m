@@ -3,12 +3,12 @@ function gongchu = gongchuBuilder(id,startDateTimeStr,endDateTimeStr)
 gongchu.id = str2num(id);
 
 lineSplit = strsplit(startDateTimeStr,' ');
-gongchu.startDate = lineSplit{1};
+gongchu.startDate = dateStringParser(lineSplit{1});
 lineSplit = strsplit(lineSplit{2},':');
 gongchu.startTime = timeBuilder(str2num(lineSplit{1}),str2num(lineSplit{2}),0);
 
 lineSplit = strsplit(endDateTimeStr,' ');
-gongchu.endDate = lineSplit{1};
+gongchu.endDate = dateStringParser(lineSplit{1});
 lineSplit = strsplit(lineSplit{2},':');
 gongchu.endTime = timeBuilder(str2num(lineSplit{1}),str2num(lineSplit{2}),0);
 
