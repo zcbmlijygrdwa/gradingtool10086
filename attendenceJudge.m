@@ -6,17 +6,6 @@ function attendence = attendenceJudge(dakaInterval,GongchuInterval,xiujiaInterva
 
 % waiverIntever % generated from GongchuInterval and xiujiaInterval
 waiverInteval = [];
-% if(length(GongchuInterval)~=0&&length(waiverInteval)~=0)
-%     newInterval1 = [timeToSeconds(GongchuInterval.startTime),timeToSeconds(GongchuInterval.endTime)];
-%     newInterval2 = [timeToSeconds(xiujiaInterval.startTime),timeToSeconds(xiujiaInterval.endTime)];
-%     waiverInteval = mergeIntervals(waiverInteval,newInterval);
-% elseif(length(GongchuInterval)~=0)
-%     waiverInteval = [timeToSeconds(GongchuInterval.startTime),timeToSeconds(GongchuInterval.endTime)];
-% elseif(length(xiujiaInterval)~=0)
-%     waiverInteval = [timeToSeconds(xiujiaInterval.startTime),timeToSeconds(xiujiaInterval.endTime)];
-% else
-%     waiverInteval = [];
-% end
 
 if(length(GongchuInterval)~=0)
     waiverInteval = [timeToSeconds(GongchuInterval.startTime),timeToSeconds(GongchuInterval.endTime)];
@@ -41,17 +30,18 @@ if(length(chuchaiInterval)~=0)
     end
 end
 
-
+attendence = {};
+attendence_counter = 1;
 
 
 if(length(waiverInteval)~=0&&waiverInteval(1)<=timeToSeconds(timeBuilder(9,5,0))&&waiverInteval(2)>=timeToSeconds(timeBuilder(17,30,0)))
     disp('waiverAllDay');
-    attendence = {'full_attendence'};
+    attendence{attendence_counter} = {'full_attendence'};
+    attendence_counter = attendence_counter+1;
     return;
 end
 
-attendence = {};
-attendence_counter = 1;
+
 
 %morning_09_00_Seconds = timeToSeconds(timeBuilder(9,0,0));
 morning_09_05_Seconds = timeToSeconds(timeBuilder(9,5,0));
@@ -174,55 +164,27 @@ else
     if(startSeconds<=morning_09_05_Seconds&&endSeconds>afternoon_17_30_Seconds)
         attendence{attendence_counter} = {'full_attendence'};
         attendence_counter = attendence_counter+1;
-        return;
+    else
+        if(startSeconds>morning_09_05_Seconds)
+            if(startSeconds>morning_09_05_Seconds)
+                attendence{attendence_counter} = {'late1'};
+                attendence_counter = attendence_counter+1;
+            else
+                attendence{attendence_counter} = {'late2'};
+                attendence_counter = attendence_counter+1;
+            end
+        end
+        
+        if(endSeconds<afternoon_17_30_Seconds)
+            attendence{attendence_counter} = {'early_leave'};
+            attendence_counter = attendence_counter+1;
+        end
     end
 end
 
 
 
-% %=========================================================
-% if(length(startTime)~=0&&length(endTime)~=0)
-%     startSeconds = timeToSeconds(startTime);
-%     endSeconds = timeToSeconds(endTime);
-%     if(startSeconds<=morning_09_05_Seconds&&endSeconds>afternoon_17_30_Seconds)
-%         attendence{attendence_counter} = {'full_attendence'};
-%         attendence_counter = attendence_counter+1;
-%         return;
-%     end
-% end
-%
-%
-%
-%
-% % chechk punch_in status
-% if(length(startTime)~=0)
-%     startSeconds = timeToSeconds(startTime);
-%     if(startSeconds>morning_09_05_Seconds)
-%         if(startSeconds<=morning_10_00_Seconds)
-%             attendence{attendence_counter} = 'late1';
-%         else
-%             attendence{attendence_counter} = 'late2';
-%         end
-%         attendence_counter = attendence_counter + 1;
-%     end
-% else
-%     attendence{attendence_counter} = 'no_punch_in';
-%     attendence_counter = attendence_counter + 1;
-% end
-%
-%
-% % chechk punch_out status
-% if(length(endTime)~=0)
-%     endSeconds = timeToSeconds(endTime);
-%     if(endSeconds<=afternoon_17_30_Seconds)
-%         attendence{attendence_counter} = 'early_leave';
-%         attendence_counter = attendence_counter + 1;
-%     end
-% else
-%     attendence{attendence_counter} = 'no_punch_out';
-%     attendence_counter = attendence_counter + 1;
-% end
-%
-%
-% %
+
+
+
 end

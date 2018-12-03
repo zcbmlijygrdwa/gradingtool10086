@@ -29,4 +29,8 @@ GongchuInterval = getGongchu(timePunch.id,timePunch.date,gongchuSet);
 xiujiaInterval = getXiujia(timePunch.id,timePunch.date,xiujiaSet); 
 chuchaiInterval = getChuchai(timePunch.id,timePunch.date,ChuchaiSet); 
 timePunch.attendence = attendenceJudge(dakaInterval,GongchuInterval,xiujiaInterval,chuchaiInterval);
+% if(strcmp(id,'06220012'))
+%     attendence = attendenceJudge(dakaInterval,GongchuInterval,xiujiaInterval,chuchaiInterval)
+%    a = 1; 
+% end
 end
