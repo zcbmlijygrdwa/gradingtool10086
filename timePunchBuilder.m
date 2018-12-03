@@ -1,6 +1,6 @@
 function timePunch = timePunchBuilder(id,date,startTimeStr,endTimeStr,gongchuSet,xiujiaSet,ChuchaiSet)
 
-% tempTimePunch: 
+% tempTimePunch:
 % id
 % date
 % dakaInterval
@@ -26,11 +26,12 @@ else
 end
 
 GongchuInterval = getGongchu(timePunch.id,timePunch.date,gongchuSet);
-xiujiaInterval = getXiujia(timePunch.id,timePunch.date,xiujiaSet); 
-chuchaiInterval = getChuchai(timePunch.id,timePunch.date,ChuchaiSet); 
+xiujiaInterval = getXiujia(timePunch.id,timePunch.date,xiujiaSet);
+chuchaiInterval = getChuchai(timePunch.id,timePunch.date,ChuchaiSet);
 timePunch.attendence = attendenceJudge(dakaInterval,GongchuInterval,xiujiaInterval,chuchaiInterval);
-% if(strcmp(id,'06220012'))
-%     attendence = attendenceJudge(dakaInterval,GongchuInterval,xiujiaInterval,chuchaiInterval)
-%    a = 1; 
+% if(strcmp(id,'06220027'))
+%     if(dateToDays(timePunch.date)==dateToDays(dateStringParser('2018-11-7')))
+%         a = 1;
+%     end
 % end
 end

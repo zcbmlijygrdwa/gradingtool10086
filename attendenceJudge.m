@@ -166,7 +166,7 @@ else
         attendence_counter = attendence_counter+1;
     else
         if(startSeconds>morning_09_05_Seconds)
-            if(startSeconds>morning_09_05_Seconds)
+            if(startSeconds<morning_10_00_Seconds)
                 attendence{attendence_counter} = {'late1'};
                 attendence_counter = attendence_counter+1;
             else
