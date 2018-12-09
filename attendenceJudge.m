@@ -59,14 +59,14 @@ if(length(dakaInterval.startTime)==0&&length(dakaInterval.endTime)==0)
                 attendence_counter = attendence_counter+1;
             end
         else
-            disp("morning good.")
+            disp('morning good.')
         end
         
         if(timeToSeconds(waiverInteval(2))<afternoon_17_30_Seconds)
             attendence{attendence_counter} = {'early_leave'};
             attendence_counter = attendence_counter+1;
         else
-            disp("afternoon good.")
+            disp('afternoon good.')
         end
     else
         attendence{attendence_counter} = {'no_punch_all_day'};
