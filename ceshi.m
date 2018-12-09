@@ -1,17 +1,17 @@
 close all
 clear all
 
-dakaS = '08:55:56';
-dakaE = '16:52:32';
+dakaS = '10:25:00';
+dakaE = '18:35:32';
 
-xiujiaS = '09:22:45'
-xiujiaE = '11:24:20'
+xiujiaS = '';
+xiujiaE = '';
 
-gongchuS = '13:45:20'
-gongchuE = '15:01:01'
+gongchuS = '7:00:00';
+gongchuE = '18:00:00';
 
-chuchaiS = '15:55:05'
-chuchaiE = '16:05:03'
+chuchaiS = '';
+chuchaiE = '';
 
 
 

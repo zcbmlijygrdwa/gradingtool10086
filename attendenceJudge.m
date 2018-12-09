@@ -7,11 +7,11 @@ function attendence = attendenceJudge(dakaInterval,GongchuInterval,xiujiaInterva
 % waiverIntever % generated from GongchuInterval and xiujiaInterval
 waiverInteval = [];
 
-if(length(GongchuInterval)~=0)
+if(length(GongchuInterval)~=0&&length(GongchuInterval.startTime)~=0&&length(GongchuInterval.endTime)~=0)
     waiverInteval = [timeToSeconds(GongchuInterval.startTime),timeToSeconds(GongchuInterval.endTime)];
 end
 
-if(length(xiujiaInterval)~=0)
+if(length(xiujiaInterval)~=0&&length(xiujiaInterval.startTime)~=0&&length(xiujiaInterval.endTime)~=0)
     if(length(waiverInteval)~=0)
         newInterval = [timeToSeconds(xiujiaInterval.startTime),timeToSeconds(xiujiaInterval.endTime)];
         waiverInteval = mergeIntervals(waiverInteval,newInterval);
@@ -21,7 +21,7 @@ if(length(xiujiaInterval)~=0)
     
 end
 
-if(length(chuchaiInterval)~=0)
+if(length(chuchaiInterval)~=0&&length(chuchaiInterval.startTime)~=0&&length(chuchaiInterval.endTime)~=0)
     if(length(waiverInteval)~=0)
         newInterval = [timeToSeconds(chuchaiInterval.startTime),timeToSeconds(chuchaiInterval.endTime)];
         waiverInteval = mergeIntervals(waiverInteval,newInterval);
