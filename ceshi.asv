@@ -1,14 +1,13 @@
 close all
 clear all
-clc;
 
-dakaS = '9:05:00';
-dakaE = '';
+dakaS = ':25:00';
+dakaE = '18:35:32';
 
 xiujiaS = '';
 xiujiaE = '';
 
-gongchuS = '13:00:00';
+gongchuS = '14:00:00';
 gongchuE = '18:00:00';
 
 chuchaiS = '';

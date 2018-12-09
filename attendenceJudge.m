@@ -161,6 +161,10 @@ elseif (length(dakaInterval.startTime)==0&&length(dakaInterval.endTime)~=0)
 else
     startSeconds = timeToSeconds(dakaInterval.startTime);
     endSeconds = timeToSeconds(dakaInterval.endTime);
+     if(length(waiverInteval)~=0)
+        startSeconds = min(startSeconds,waiverInteval(1));
+        endSeconds = max(endSeconds,waiverInteval(2));
+     end
     if(startSeconds<=morning_09_05_Seconds&&endSeconds>afternoon_17_30_Seconds)
         attendence{attendence_counter} = {'full_attendence'};
         attendence_counter = attendence_counter+1;
