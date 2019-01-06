@@ -24,7 +24,7 @@ if(length(endTimeStr)~=0)
 else
     dakaInterval.endTime = [];
 end
-
+timePunch.dakaInterval = dakaInterval;
 GongchuInterval = getGongchu(timePunch.id,timePunch.date,gongchuSet);
 xiujiaInterval = getXiujia(timePunch.id,timePunch.date,xiujiaSet);
 chuchaiInterval = getChuchai(timePunch.id,timePunch.date,ChuchaiSet);
