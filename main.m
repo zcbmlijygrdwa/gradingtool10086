@@ -15,7 +15,7 @@ ChuchaiSet = readChuchai();
 
 timePunchSet = readDaka(gongchuSet,xiujiaSet,ChuchaiSet);
 
-excludeDates = [3,4,10,11,17,18,24,25];
+excludeDates = [1,2,8,9,15,16,22,23,24,25,26,27,28,29,30,31];
 
 str_shengbu = 'shengbu';
 peopleSet_shengbu = {};
@@ -43,12 +43,12 @@ for peopleIdx = 1:length(peopleSet_shengbu)
     status.no_punch_out = 0;
     status.no_punch_all_day = 0;
     
-    if tempPeople.id == 6220147
-        a = 1;
-    end
+%     if tempPeople.id == 6220147
+%         a = 1;
+%     end
     
     disp(['checking ' tempPeople.name '...']);
-    for day = 1:30
+    for day = 1:31
         
         %get rid of holidays/weekends
         if(ismember(day,excludeDates))
@@ -57,7 +57,7 @@ for peopleIdx = 1:length(peopleSet_shengbu)
             
         end
         
-        tempDateStr = dateStringBuilder(2018,11,day,'-');
+        tempDateStr = dateStringBuilder(2018,12,day,'-');
         tempDate = dateStringParser(tempDateStr);
         isRecordFound = false;
         for timePunchIdx = 1:length(timePunchSet)
@@ -182,7 +182,7 @@ end
 
 
 %write into txt
-fileID = fopen(['kaoqing11_new.csv'],'wt','n','UTF-8');
+fileID = fopen(['kaoqing12_new.csv'],'wt','n','UTF-8');
 for reportIdx = 1:length(peopleReportSet)
     peopleReport = peopleReportSet{reportIdx};
     reportStr = [peopleReport.people.name ',' num2str(peopleReport.people.id)];
