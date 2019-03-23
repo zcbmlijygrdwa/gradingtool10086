@@ -3,7 +3,7 @@ function ChuchaiSet = readChuchai()
 ChuchaiSet = {};
 ChuchaiSet_Count = 1;
 
-fid1 = fopen('data/11/11chuchai.csv','r', 'n','UTF-8'); %# open csv file for reading
+fid1 = fopen('data/12/chuchai.csv','r', 'n','UTF-8'); %# open csv file for reading
 
 while ~feof(fid1)
     line = fgets(fid1); %# read line by line

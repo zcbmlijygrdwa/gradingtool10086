@@ -3,7 +3,7 @@ function gongchuSet = readGongchu()
 gongchuSet = {};
 gongchuSet_Count = 1;
 
-fid1 = fopen('data/11/11gongchu.csv','r', 'n','UTF-8'); %# open csv file for reading
+fid1 = fopen('data/12/gongchu.csv','r', 'n','UTF-8'); %# open csv file for reading
 
 while ~feof(fid1)
     line = fgets(fid1); %# read line by line

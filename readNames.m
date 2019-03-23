@@ -1,6 +1,6 @@
 function peopleSet = readNames()
 
-fid1 = fopen('data/11/hetongzhi_all_people.csv','r', 'n','UTF-8'); %# open csv file for reading
+fid1 = fopen('data/12/hetongzhi.csv','r', 'n','UTF-8'); %# open csv file for reading
 peopleSet = {};
 peopleCount = 1;
 
@@ -19,7 +19,7 @@ fclose(fid1);
 
 
 
-fid1 = fopen('data/11/disanfang_all_people.csv','r', 'n','UTF-8'); %# open csv file for reading
+fid1 = fopen('data/12/disanfang.csv','r', 'n','UTF-8'); %# open csv file for reading
 
 while ~feof(fid1)
     line = fgets(fid1); %# read line by line
